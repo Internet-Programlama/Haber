@@ -9,6 +9,7 @@ import com.habersitesi.model.*;
 import com.habersitesi.repository.*;
 import com.habersitesi.service.HaberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class HaberServiceImpl implements HaberService {
-
+    @Autowired
     private final HaberRepository haberRepository;
     private final KullaniciRepository kullaniciRepository;
     private final KategoriRepository kategoriRepository;
@@ -161,7 +162,7 @@ public class HaberServiceImpl implements HaberService {
 
     @Override
     public List<Haber> kategoriVeKelimeyeGoreGetir(Long kategoriId, String kelime) {
-        return haberRepository.findByKategoriVeKelime(kategoriId, kelime);
+        return haberRepository.araKategoriyeGore(kategoriId, kelime);
     }
     @Override
     public List<Haber> etiketeGoreGetir(String etiket) {
